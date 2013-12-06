@@ -3,6 +3,7 @@ import sys
 
 if (len(sys.argv)!=3):
     print('Usage: python merge.py genome_file /path/to/HCR_fasta_files/')
+    print('Requires files from ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRC.p13_chr*.fa.gz to be downloaded and gunzipped to the location specified in the second command line parameter.')
     quit(0)
 
 from Bio import SeqIO, SeqRecord
@@ -65,7 +66,8 @@ for chromosome in a_genotype.keys():
                 try:
                     seq_b[int(key)-1] = b_genotype[chromosome][key]
                 except:
-                    print (key + ' ' + str(seq_b.__len__()))
+                    # Some out of bound errors still occur for X chromosome, I guess related to the PAR region
+                    print ('OOB in Chr ' +chromosome + ': ' + key + ' > ' + str(seq_b.__len__()))
         new_record_a = SeqRecord.SeqRecord(seq_a,id=seq_record.id,name=seq_record.name,description=seq_record.description)
         if (not (chromosome == 'MT' or chromosome == 'Y')):
             new_record_b = SeqRecord.SeqRecord(seq_b,id=seq_record.id,name=seq_record.name,description=seq_record.description)
