@@ -3,7 +3,7 @@ import sys
 
 if (len(sys.argv)!=3):
     print('Usage: python merge.py genome_file /path/to/HCR_fasta_files/')
-    print('Requires files from ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRC.p13_chr*.fa.gz to be downloaded and gunzipped to the location specified in the second command line parameter.')
+    print('Requires files from ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_GRCh37.p13_chr*.fa.gz to be downloaded and gunzipped to the location specified in the second command line parameter.')
     quit(0)
 
 from Bio import SeqIO, SeqRecord
